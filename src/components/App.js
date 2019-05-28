@@ -4,11 +4,13 @@ import Header from './Header.js';
 class App extends Component {
     render() {
         const dom = this.renderDOM();
-        const main = dom.querySelector('main');
         
         const header = new Header();
-        dom.insertBefore(header.render(), main);
+        const headerDOM = header.render();
 
+        const main = dom.querySelector('main');
+        dom.insertBefore(headerDOM, main);
+        
         return dom;
     }
 
