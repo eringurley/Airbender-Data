@@ -2,23 +2,22 @@ import Component from './Component.js';
 import Header from './Header.js';
 import CharacterList from './CharacterList.js';
 import airbenderApi from '../services/airbender-api.js';
-import characters from '../../test/characters.js';
 
 class App extends Component {
     render() {
         const dom = this.renderDOM();
+        const main = dom.querySelector('main');
         
         const header = new Header();
-        const headerDOM = header.render();
+        dom.insertBefore(header.render(), main);
 
-        const main = dom.querySelector('main');
-        dom.insertBefore(headerDOM, main);
-
-        const characterList = new CharacterList({ characters });
+        const characterList = new CharacterList({ characters: [] });
         main.appendChild(characterList.render());
 
         airbenderApi.getCharacters()
-            .then(characters => console.log(characters));
+            .then(characters => {
+                characterList.update({ characters }); 
+            });
         
         return dom;
     }
