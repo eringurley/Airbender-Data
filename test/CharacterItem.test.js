@@ -6,7 +6,7 @@ test('create character item DOM', assert => {
     //arrange
     const character = {
         name: '46th Earth King',
-        photoURL: 'https://vignette.wikia.nocookie.net/avatar/images/5/51/46th_Earth_King.png/revision/latest?cb=20130627160441'
+        photoUrl: 'https://vignette.wikia.nocookie.net/avatar/images/5/51/46th_Earth_King.png/revision/latest?cb=20130627160441'
     };
 
     //act
