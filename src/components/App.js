@@ -2,6 +2,7 @@ import Component from './Component.js';
 import Header from './Header.js';
 import CharacterList from './CharacterList.js';
 import airbenderApi from '../services/airbender-api.js';
+import Loading from './Loading.js';
 
 class App extends Component {
     render() {
@@ -17,7 +18,14 @@ class App extends Component {
         airbenderApi.getCharacters()
             .then(characters => {
                 characterList.update({ characters }); 
+            })
+            .finally(() => {
+                loading.update({ done: true });
             });
+
+        const loading = new Loading({ done:false });
+        const loadingDOM = loading.render();
+        main.appendChild(loadingDOM);
         
         return dom;
     }
