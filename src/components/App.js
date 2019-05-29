@@ -2,6 +2,7 @@ import Component from './Component.js';
 import Header from './Header.js';
 import CharacterList from './CharacterList.js';
 import airbenderApi from '../services/airbender-api.js';
+import characters from '../../test/characters.js';
 
 class App extends Component {
     render() {
@@ -13,7 +14,7 @@ class App extends Component {
         const main = dom.querySelector('main');
         dom.insertBefore(headerDOM, main);
 
-        const characterList = new CharacterList();
+        const characterList = new CharacterList({ characters });
         main.appendChild(characterList.render());
 
         airbenderApi.getCharacters()
