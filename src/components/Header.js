@@ -4,7 +4,7 @@ class Header extends Component {
     renderTemplate() {
         return /*html*/ `
         <header>
-        <a href="">Back Home</a>
+        <a href="">Show All Characters</a>
         <h1>The Last Airbender</h1>
         </header>
         `;
