@@ -20,7 +20,6 @@ class App extends Component {
         
         function loadCharacters() {
             const params = window.location.hash.slice(1);
-            console.log(params);
             airbenderApi.getCharacters(params)
                 .then(characters => {
                     characterList.update({ characters });
