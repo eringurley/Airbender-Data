@@ -14,29 +14,40 @@ class App extends Component {
 
         const characterList = new CharacterList({ characters: [] });
         main.appendChild(characterList.render());
-
-        airbenderApi.getCharacters()
-            .then(characters => {
-                characterList.update({ characters }); 
-            })
-            .finally(() => {
-                loading.update({ done: true });
-            });
-
-        const loading = new Loading({ done:false });
-        const loadingDOM = loading.render();
-        main.appendChild(loadingDOM);
         
+        const loading = new Loading({ loading: true });
+        main.appendChild(loading.render());
+        
+        function loadCharacters() {
+            const params = window.location.hash.slice(1);
+            console.log(params);
+            airbenderApi.getCharacters(params)
+                .then(characters => {
+                    characterList.update({ characters });
+                })
+                .catch(err => {
+                    console.log(err);   
+                })
+                .finally(() => {
+                    loading.update({ loading: false });
+                });
+        }
+        loadCharacters();
+
+        window.addEventListener('hashchange', () => {
+            loadCharacters();
+        });
+
         return dom;
     }
 
     renderTemplate() {
         return /*html*/ `
-    <div>
-        <main>
-        </main>
-    </div>
-    `;
+                <div>
+                    <main>
+                    </main>
+                </div>
+        `;
     }
 }
 
