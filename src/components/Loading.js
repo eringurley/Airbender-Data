@@ -2,8 +2,8 @@ import Component from './Component.js';
 
 class Loading extends Component {
     renderTemplate() {
-        const done = this.props.done;
-        if(done) {
+        const done = this.props.loading;
+        if(!done) {
             return /*html*/ `
                 <div></div>
             `;
